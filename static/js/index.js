@@ -1,4 +1,5 @@
 import Create from "./views/Create.js";
+import Home from "./views/Home.js";
 
 const navigateTo = (url) => {
   history.pushState(null, null, url);
@@ -7,7 +8,7 @@ const navigateTo = (url) => {
 
 const router = async () => {
   const routes = [
-    { path: "/", view: Create },
+    { path: "/", view: Home },
     { path: "/create", view: Create },
   ];
 
