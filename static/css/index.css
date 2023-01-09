@@ -1,0 +1,20 @@
+/* default button style */
+.btn {
+  position: relative;
+  border: 0;
+  padding: 15px 25px;
+  display: block;
+  text-align: center;
+  color: white;
+  width: 60%;
+}
+
+.btn:active {
+  top: 4px; 
+}
+
+.btn.red, .btn-two.red {background-color: #fa5a5a;}
+
+.btn.red {box-shadow:0px 4px 0px #E04342;}
+
+.btn.red:active {box-shadow: 0 0 #ff4c4b; background-color: #ff4c4b;}
