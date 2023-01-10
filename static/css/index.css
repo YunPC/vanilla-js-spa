@@ -1,12 +1,18 @@
-/* default button style */
+ a {
+  text-decoration: none;
+ }
+ 
+ /* default button style */
 .btn {
   position: relative;
   border: 0;
+  box-sizing: border-box;
   padding: 15px 25px;
   display: block;
   text-align: center;
   color: white;
-  width: 60%;
+  width: 80%;
+  margin: 0 10%;
 }
 
 .btn:active {
@@ -18,3 +24,41 @@
 .btn.red {box-shadow:0px 4px 0px #E04342;}
 
 .btn.red:active {box-shadow: 0 0 #ff4c4b; background-color: #ff4c4b;}
+
+.list-style {
+  list-style: none;
+  padding: 0;
+  width: 80%;
+  margin: 0 10%;
+
+}
+
+.list-item {
+  margin-top: 5vh;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #BACDD8;
+}
+
+.list-item-link {
+    display: flex;
+    gap: 10px;
+}
+
+.card-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: fill; 
+}
+
+.list-description {
+  width: 70%;
+}
+
+.long-text {
+  white-space: nowrap;
+  overflow:hidden;
+  display:block;
+  text-overflow: ellipsis;
+}
