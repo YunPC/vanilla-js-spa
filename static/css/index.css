@@ -1,6 +1,31 @@
  a {
   text-decoration: none;
  }
+
+ input[type=text]{
+  width: 80%;
+  margin: 2vh 10%;
+  height: 7vh;
+  padding: 0;
+  box-sizing: border-box;
+ }
+
+ textarea {
+  width: 80%;
+  margin: 2vh 10%;
+  box-sizing: border-box;
+  min-height: 15vh;
+ }
+
+ .header {
+  font-size: 2rem;
+  text-align: right;
+  margin: 0 10%;
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  text-align: end;
+ }
  
  /* default button style */
 .btn {
@@ -24,6 +49,13 @@
 .btn.red {box-shadow:0px 4px 0px #E04342;}
 
 .btn.red:active {box-shadow: 0 0 #ff4c4b; background-color: #ff4c4b;}
+
+.btn:disabled {
+  top: 0px;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: none;
+}
 
 .list-style {
   list-style: none;
