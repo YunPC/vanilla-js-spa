@@ -23,29 +23,38 @@ export default class extends AbstractView {
     const { post, comments } = await this.fetchMessage(this.params.id);
     const postCardHtml = `
       <div class="post-card">
-        <img src="${post.image}" alt="${post.title}의 사진"/>
+        <img src="${post.image}" alt="${
+      post.title
+    }의 사진" class="post-card-image"/>
         <div>
           <h2>${post.title}</h2>
-          <time>${post.createdAt.substring(0, 10)}</time>
+          <time>${post.createdAt.substring(0, 10).replaceAll("-", ". ")}</time>
+          <p>${post.content}</p>
         </div>
-        <ul>
-            <li><button>수정</button></li>
-            <li><button>삭제</button></li>
+        <ul class="post-card-button-list">
+            <li><button class="btn red mini post-card-button-item">✏️ 수정</button></li>
+            <li><button class="btn red mini post-card-button-item">😵 삭제</button></li>
           </ul>
       </div>
     `;
     const commentsHtml = comments
-      .map((comment) => `<li>${comment.content}</li>`)
+      .map(
+        (comment) => `<li class="comment-list-item">
+      ${comment.content}
+      <button class="comment-delete-button">❌</button>
+      </li>`
+      )
       .join("");
 
     return `
       ${postCardHtml}
-      <ul>
+      <ul class="comment-list">
+        <li class="comment-list-title">댓글</li>
         ${commentsHtml}
       </ul>
-      <form action="#">
+      <form action="#" class="reply-container">
         <textarea placeholder="댓글을 입력해주세요"></textarea>
-        <button type="submit">댓글 보내기</button>
+        <button type="submit" class="btn red mini reply-submit-button">댓글 작성</button>
       </form>
     `;
   }

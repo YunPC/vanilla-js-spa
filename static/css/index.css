@@ -57,6 +57,11 @@
   box-shadow: none;
 }
 
+.btn.mini {
+  padding: 4px 12px;  
+  font-size: 12px;
+}
+
 .list-style {
   list-style: none;
   padding: 0;
@@ -93,4 +98,85 @@
   overflow:hidden;
   display:block;
   text-overflow: ellipsis;
+}
+
+.post-card {
+  width: 72%;
+  margin: 2rem 10%;
+  border: 2px solid red;
+  border-radius: 12px;
+  padding: 4%;
+}
+
+.post-card-image{
+  width: 50%;
+  margin: 0 25%;
+}
+
+.post-card-button-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+.post-card-button-item {
+  width: 4rem;
+  margin-right: 1rem;
+}
+
+.comment-list {
+  width: 80%;
+  margin: 0 10%;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 5rem;
+}
+
+.comment-list-title {
+  margin-bottom: 1rem;
+}
+
+.comment-list-item {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid gray;
+}
+
+.comment-list-item::before {
+  content: '';
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: red;
+  top: 2rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.comment-delete-button {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  background-color: white;
+  top: -0.05rem;
+}
+
+.comment-delete-button:hover{
+  cursor: pointer;
+}
+
+.reply-container {
+  display:flex; 
+  width: 80%;
+  margin: 0 10%;
+  align-items: center;
+}
+
+.reply-submit-button {
+  width: 10rem;
+  height: 3rem;
+  margin: 0;
 }
