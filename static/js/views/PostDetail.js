@@ -4,6 +4,7 @@ export default class extends AbstractView {
   constructor(params) {
     super(params);
     this.setTitle("신년 메시지 상세 페이지");
+    this.postData = null;
   }
 
   addBackButton() {
@@ -15,7 +16,19 @@ export default class extends AbstractView {
     const {
       data: { data },
     } = await axios.get(`http://43.201.103.199/post/${id}`);
+    this.postData = { ...data };
     return { ...data };
+  }
+
+  turnToEditMode() {
+    const postCardDescriptionNode = document.querySelector(
+      ".post-card-description"
+    );
+    postCardDescriptionNode.innerHTML = `<form action="#">
+      <input type="text" value=${this.postData.post.title} />
+      <textarea type="text">${this.postData.post.content}</textarea>
+      <button type="submit" class="btn red">수정</button>
+    </form>`;
   }
 
   async getHtml() {
@@ -26,15 +39,17 @@ export default class extends AbstractView {
         <img src="${post.image}" alt="${
       post.title
     }의 사진" class="post-card-image"/>
+      <div class="post-card-description">
         <div>
           <h2>${post.title}</h2>
           <time>${post.createdAt.substring(0, 10).replaceAll("-", ". ")}</time>
           <p>${post.content}</p>
         </div>
         <ul class="post-card-button-list">
-            <li><button class="btn red mini post-card-button-item">✏️ 수정</button></li>
+            <li><button class="btn red mini post-card-button-item" data-modify-post-button>✏️ 수정</button></li>
             <li><button class="btn red mini post-card-button-item">😵 삭제</button></li>
-          </ul>
+        </ul>
+      </div>
       </div>
     `;
     const commentsHtml = comments

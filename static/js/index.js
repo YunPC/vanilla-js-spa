@@ -53,7 +53,7 @@ const router = async () => {
 
   const view = new match.route.view(getParams(match));
 
-  state = new match.route.view();
+  state = view;
 
   document.querySelector("#app").innerHTML = await view.getHtml();
 };
@@ -74,6 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.matches("[data-post-submit-button]")) {
       state.postMessage();
       navigateTo("/");
+    }
+    if (e.target.matches("[data-modify-post-button")) {
+      state.turnToEditMode();
     }
   });
   document.body.addEventListener("input", (e) => {
