@@ -11,26 +11,40 @@ export default class extends AbstractView {
     header.innerHTML = `<a href="/">&#8249</a> HPNY 2023`;
   }
 
+  async fetchMessage(id) {
+    const {
+      data: { data },
+    } = await axios.get(`http://43.201.103.199/post/${id}`);
+    return { ...data };
+  }
+
   async getHtml() {
     this.addBackButton();
-
-    return `
+    const { post, comments } = await this.fetchMessage(this.params.id);
+    const postCardHtml = `
       <div class="post-card">
-        <img src="" alt=""/>
+        <img src="${post.image}" alt="${post.title}의 사진"/>
         <div>
-          <h2>신년 계획</h2>
-          <time>2023. 01. 10</time>
-          <ul>
+          <h2>${post.title}</h2>
+          <time>${post.createdAt.substring(0, 10)}</time>
+        </div>
+        <ul>
             <li><button>수정</button></li>
             <li><button>삭제</button></li>
           </ul>
-        </div>
       </div>
+    `;
+    const commentsHtml = comments
+      .map((comment) => `<li>${comment.content}</li>`)
+      .join("");
+
+    return `
+      ${postCardHtml}
       <ul>
-        <li>너무 슬퍼하지 마세요! 다들 비슷해요 ㅎㅎ</li>
+        ${commentsHtml}
       </ul>
       <form action="#">
-        <textarea placeholder="댓글을 입력해주세요"/>
+        <textarea placeholder="댓글을 입력해주세요"></textarea>
         <button type="submit">댓글 보내기</button>
       </form>
     `;
