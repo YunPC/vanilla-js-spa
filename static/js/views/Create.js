@@ -1,8 +1,8 @@
 import AbstractView from "./AbstractView.js";
 
 export default class extends AbstractView {
-  constructor() {
-    super();
+  constructor(params) {
+    super(params);
     this.setTitle("신년 메시지 앱 - 작성 페이지");
     this.imageUrl = "";
     this.title = "";
