@@ -14,7 +14,7 @@ export default class extends AbstractView {
     header.innerHTML = `<a href="/">&#8249</a> HPNY 2023`;
   }
 
-  async addRandomImage() {
+  async fetchRandomImage() {
     const accessKey = "UeQ6L9qTHM782PHDtD9kE0pf9epVGolNPsTToi-7qRo";
     const {
       data: { urls: raw },
@@ -23,7 +23,12 @@ export default class extends AbstractView {
     );
     this.imageUrl = raw.regular;
 
-    document.querySelector("[data-random-image-button]").disabled = true;
+    const randomImageButton = document.querySelector(
+      "[data-random-image-button]"
+    );
+
+    randomImageButton.disabled = true;
+    randomImageButton.textContent = "랜덤 이미지 추가 완료";
   }
 
   checkIsReadyToSubmit() {
@@ -47,10 +52,10 @@ export default class extends AbstractView {
   async getHtml() {
     this.addBackButton();
     return `
-      <button class="btn red" data-random-image-button>랜덤 이미지 추가하기</button>
-      <input type="text" aria-label="신년 메시지 제목" data-title-input/> 
-      <textarea aria-label="신년 메시지 내용" data-description-input></textarea>
-      <button class="btn red" disabled data-post-submit-button>글 작성하기</button>
+      <button class="btn red" data-fetch-random-image-button>랜덤 이미지 추가하기</button>
+      <input type="text" aria-label="신년 메시지 제목" data-message-title-input/> 
+      <textarea aria-label="신년 메시지 내용" data-message-description-input></textarea>
+      <button class="btn red" disabled data-post-message-button>글 작성하기</button>
     `;
   }
 }

@@ -31,14 +31,14 @@ export default class extends AbstractView {
     </form>`;
   }
 
-  async editPost(data) {
+  async editMessage(data) {
     await axios.patch(`http://43.201.103.199/post/${this.params.id}`, {
       ...data,
     });
     return;
   }
 
-  async deletePost(id) {
+  async deleteMessage() {
     await axios.delete(`http://43.201.103.199/post/${this.params.id}`);
     return;
   }
@@ -70,8 +70,8 @@ export default class extends AbstractView {
           <p>${post.content}</p>
         </div>
         <ul class="post-card-button-list">
-            <li><button class="btn red mini post-card-button-item" data-modify-post-button>✏️ 수정</button></li>
-            <li><button class="btn red mini post-card-button-item" data-modify-delete-button>😵 삭제</button></li>
+            <li><button class="btn red mini post-card-button-item" data-modify-message-button>✏️ 수정</button></li>
+            <li><button class="btn red mini post-card-button-item" data-delete-message-button>😵 삭제</button></li>
         </ul>
       </div>
       </div>

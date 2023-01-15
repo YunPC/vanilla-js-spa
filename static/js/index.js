@@ -67,19 +67,19 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       navigateTo(e.target.href);
     }
-    if (e.target.matches("[data-random-image-button]")) {
-      state.addRandomImage();
+    if (e.target.matches("[data-fetch-random-image-button]")) {
+      state.fetchRandomImage();
       state.checkIsReadyToSubmit();
     }
-    if (e.target.matches("[data-post-submit-button]")) {
+    if (e.target.matches("[data-post-message-button]")) {
       state.postMessage();
       navigateTo("/");
     }
-    if (e.target.matches("[data-modify-post-button")) {
+    if (e.target.matches("[data-modify-message-button]")) {
       state.turnToEditMode();
     }
-    if (e.target.matches("[data-modify-delete-button]")) {
-      await state.deletePost();
+    if (e.target.matches("[data-delete-message-button]")) {
+      await state.deleteMessage();
       navigateTo("/");
     }
     if (e.target.matches("[data-comment-item-delete-button]")) {
@@ -89,11 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   document.body.addEventListener("input", (e) => {
-    if (e.target.matches("[data-title-input]")) {
+    if (e.target.matches("[data-message-title-input]")) {
       state.title = e.target.value;
       state.checkIsReadyToSubmit();
     }
-    if (e.target.matches("[data-description-input]")) {
+    if (e.target.matches("[data-message-description-input]")) {
       state.content = e.target.value;
       state.checkIsReadyToSubmit();
     }
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.matches("[data-confirm-post-modify]")) {
       e.preventDefault();
       const postData = { title: e.target[0].value, content: e.target[1].value };
-      await state.editPost(postData);
+      await state.editMessage(postData);
       document.querySelector("#app").innerHTML = await state.getHtml();
     }
     if (e.target.matches("[data-post-comment]")) {
