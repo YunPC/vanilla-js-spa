@@ -38,7 +38,7 @@ export default class extends AbstractView {
     return;
   }
 
-  async deletePost() {
+  async deletePost(id) {
     await axios.delete(`http://43.201.103.199/post/${this.params.id}`);
     return;
   }
@@ -47,6 +47,11 @@ export default class extends AbstractView {
     await axios.post(`http://43.201.103.199/comment/${this.params.id}`, {
       content,
     });
+    return;
+  }
+
+  async deleteComment(id) {
+    await axios.delete(`http://43.201.103.199/comment/${id}`);
     return;
   }
 
@@ -73,9 +78,11 @@ export default class extends AbstractView {
     `;
     const commentsHtml = comments
       .map(
-        (comment) => `<li class="comment-list-item">
+        (
+          comment
+        ) => `<li class="comment-list-item" id="comment-item-${comment.commentId}">
       ${comment.content}
-      <button class="comment-delete-button">❌</button>
+      <button class="comment-delete-button" data-comment-item-delete-button>❌</button>
       </li>`
       )
       .join("");

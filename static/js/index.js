@@ -82,6 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
       await state.deletePost();
       navigateTo("/");
     }
+    if (e.target.matches("[data-comment-item-delete-button]")) {
+      const commentId = e.target.parentNode.id.split("-")[2];
+      await state.deleteComment(commentId);
+      document.querySelector("#app").innerHTML = await state.getHtml();
+    }
   });
   document.body.addEventListener("input", (e) => {
     if (e.target.matches("[data-title-input]")) {
