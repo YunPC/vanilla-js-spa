@@ -24,11 +24,18 @@ export default class extends AbstractView {
     const postCardDescriptionNode = document.querySelector(
       ".post-card-description"
     );
-    postCardDescriptionNode.innerHTML = `<form action="#">
-      <input type="text" value=${this.postData.post.title} />
+    postCardDescriptionNode.innerHTML = `<form action="#" data-confirm-post-modify>
+      <input type="text" value="${this.postData.post.title}" />
       <textarea type="text">${this.postData.post.content}</textarea>
       <button type="submit" class="btn red">수정</button>
     </form>`;
+  }
+
+  async editPost(data) {
+    await axios.patch(`http://43.201.103.199/post/${this.params.id}`, {
+      ...data,
+    });
+    return;
   }
 
   async getHtml() {

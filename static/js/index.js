@@ -89,6 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
       state.checkIsReadyToSubmit();
     }
   });
-
+  document.body.addEventListener("submit", async (e) => {
+    if (e.target.matches("[data-confirm-post-modify]")) {
+      e.preventDefault();
+      const postData = { title: e.target[0].value, content: e.target[1].value };
+      await state.editPost(postData);
+      document.querySelector("#app").innerHTML = await state.getHtml();
+    }
+  });
   router();
 });
