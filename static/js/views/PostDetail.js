@@ -38,6 +38,18 @@ export default class extends AbstractView {
     return;
   }
 
+  async deletePost() {
+    await axios.delete(`http://43.201.103.199/post/${this.params.id}`);
+    return;
+  }
+
+  async postComment(content) {
+    await axios.post(`http://43.201.103.199/comment/${this.params.id}`, {
+      content,
+    });
+    return;
+  }
+
   async getHtml() {
     this.addBackButton();
     const { post, comments } = await this.fetchMessage(this.params.id);
@@ -54,7 +66,7 @@ export default class extends AbstractView {
         </div>
         <ul class="post-card-button-list">
             <li><button class="btn red mini post-card-button-item" data-modify-post-button>✏️ 수정</button></li>
-            <li><button class="btn red mini post-card-button-item">😵 삭제</button></li>
+            <li><button class="btn red mini post-card-button-item" data-modify-delete-button>😵 삭제</button></li>
         </ul>
       </div>
       </div>
@@ -74,7 +86,7 @@ export default class extends AbstractView {
         <li class="comment-list-title">댓글</li>
         ${commentsHtml}
       </ul>
-      <form action="#" class="reply-container">
+      <form action="#" class="reply-container" data-post-comment>
         <textarea placeholder="댓글을 입력해주세요"></textarea>
         <button type="submit" class="btn red mini reply-submit-button">댓글 작성</button>
       </form>

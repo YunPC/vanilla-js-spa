@@ -62,7 +62,7 @@ window.addEventListener("popstate", router);
 
 document.addEventListener("DOMContentLoaded", () => {
   // event listener
-  document.body.addEventListener("click", (e) => {
+  document.body.addEventListener("click", async (e) => {
     if (e.target.matches("[data-link]")) {
       e.preventDefault();
       navigateTo(e.target.href);
@@ -77,6 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (e.target.matches("[data-modify-post-button")) {
       state.turnToEditMode();
+    }
+    if (e.target.matches("[data-modify-delete-button]")) {
+      await state.deletePost();
+      navigateTo("/");
     }
   });
   document.body.addEventListener("input", (e) => {
@@ -94,6 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const postData = { title: e.target[0].value, content: e.target[1].value };
       await state.editPost(postData);
+      document.querySelector("#app").innerHTML = await state.getHtml();
+    }
+    if (e.target.matches("[data-post-comment]")) {
+      e.preventDefault();
+      await state.postComment(e.target[0].value);
       document.querySelector("#app").innerHTML = await state.getHtml();
     }
   });
