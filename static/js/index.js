@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navigateTo(e.target.href);
     }
     if (e.target.matches("[data-fetch-random-image-button]")) {
-      state.fetchRandomImage();
+      await state.fetchRandomImage();
       state.checkIsReadyToSubmit();
     }
     if (e.target.matches("[data-post-message-button]")) {
