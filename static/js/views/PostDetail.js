@@ -15,7 +15,7 @@ export default class extends AbstractView {
   async fetchMessage(id) {
     const {
       data: { data },
-    } = await axios.get(`http://43.201.103.199/post/${id}`);
+    } = await axios.get(`api/post/${id}`);
     this.postData = { ...data };
     return { ...data };
   }
@@ -32,26 +32,26 @@ export default class extends AbstractView {
   }
 
   async editMessage(data) {
-    await axios.patch(`http://43.201.103.199/post/${this.params.id}`, {
+    await axios.patch(`api/post/${this.params.id}`, {
       ...data,
     });
     return;
   }
 
   async deleteMessage() {
-    await axios.delete(`http://43.201.103.199/post/${this.params.id}`);
+    await axios.delete(`api/post/${this.params.id}`);
     return;
   }
 
   async postComment(content) {
-    await axios.post(`http://43.201.103.199/comment/${this.params.id}`, {
+    await axios.post(`api/comment/${this.params.id}`, {
       content,
     });
     return;
   }
 
   async deleteComment(id) {
-    await axios.delete(`http://43.201.103.199/comment/${id}`);
+    await axios.delete(`api/comment/${id}`);
     return;
   }
 

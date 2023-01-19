@@ -24,7 +24,7 @@ export default class extends AbstractView {
     this.imageUrl = raw.regular;
 
     const randomImageButton = document.querySelector(
-      "[data-random-image-button]"
+      "[data-fetch-random-image-button]"
     );
 
     randomImageButton.disabled = true;
@@ -42,7 +42,7 @@ export default class extends AbstractView {
   }
 
   postMessage() {
-    axios.post("http://43.201.103.199/post", {
+    axios.post("api/post", {
       title: this.title,
       content: this.content,
       image: this.imageUrl,
