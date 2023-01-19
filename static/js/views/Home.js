@@ -11,7 +11,9 @@ export default class extends AbstractView {
       data: {
         data: { posts },
       },
-    } = await axios.get("http://43.201.103.199/posts");
+    } = await axios.get("http://43.201.103.199/posts", {
+      headers: { "Access-Control-Allow-Origin": "*" },
+    });
     return posts;
   }
 
