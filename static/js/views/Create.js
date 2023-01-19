@@ -32,7 +32,7 @@ export default class extends AbstractView {
   }
 
   checkIsReadyToSubmit() {
-    const submitButton = document.querySelector("[data-post-submit-button]");
+    const submitButton = document.querySelector("[data-post-message-button]");
     if (!!(this.imageUrl && this.title && this.content)) {
       submitButton.disabled = false;
       return;
